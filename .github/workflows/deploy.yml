@@ -15,8 +15,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Job 1: compile and test the code
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -41,13 +43,6 @@ jobs:
         with:
           path: ./dist # Use './dist' if you are using Vite instead of Create React App
 
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
