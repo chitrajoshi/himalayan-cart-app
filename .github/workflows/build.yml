@@ -1,0 +1,25 @@
+name: Build React App
+on:
+  pull_request:
+    branches:
+      - 'feature/*'
+      - 'bugfix/*' 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24 # Uses Node 24 LTS
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
