@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <section id="center">
-        <h1>Himalayan Cart</h1>
+        <h1>Himalayan Cart New branch</h1>
         <button
           type="button"
           className="counter"
